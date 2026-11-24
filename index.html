@@ -739,10 +739,11 @@ const crumbGeo = new THREE.IcosahedronGeometry(1, 0);
 
 /* photos des canettes, déroulées autour du cylindre par tools/photos_canettes.py (de face = la photo exacte) */
 const PHOTOS = {};
+const PHOTO_V = 2; // à augmenter quand une photo de canette change (force le rechargement chez les visiteurs)
 async function loadPhotos(){
   const loader = new THREE.TextureLoader();
   await Promise.all(ORDER.map(k => Promise.race([
-    loader.loadAsync('assets/canette-' + k + (LOW ? '-lo' : '') + '.jpg').then(t => {
+    loader.loadAsync('assets/canette-' + k + (LOW ? '-lo' : '') + '.jpg?v=' + PHOTO_V).then(t => {
       t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = LOW ? 2 : 8; PHOTOS[k] = t; }),
     new Promise(r => setTimeout(r, 12000))
   ]).catch(err => console.warn('Photo de canette indisponible :', k, err))));
