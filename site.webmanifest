@@ -1,0 +1,15 @@
+{
+  "name": "Amenda Cakes · Frostedcan",
+  "short_name": "Frostedcan",
+  "description": "Frosted Cake Can par Amenda Cakes : des gâteaux gourmands en canette. Douala.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#5c0b17",
+  "theme_color": "#5c0b17",
+  "icons": [
+    { "src": "assets/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

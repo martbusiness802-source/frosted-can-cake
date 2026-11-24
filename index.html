@@ -9,6 +9,34 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#5c0b17">
 <meta name="description" content="Frosted Cake Can par Amenda Cakes : des gâteaux gourmands en canette, 4 saveurs. Douala, Cameroun.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="site.webmanifest">
+<!-- partage WhatsApp / Facebook / Instagram (adresse mise à jour par tools/verifier_site.py --domaine) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Amenda Cakes · Frostedcan">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Frosted Cake Can par Amenda Cakes">
+<meta property="og:description" content="Des gâteaux gourmands en canette : Spéculos, Pistache, Oreo, Bueno. Commande sur WhatsApp, Douala.">
+<meta property="og:url" content="https://frosted-can-cake.netlify.app/">
+<meta property="og:image" content="https://frosted-can-cake.netlify.app/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Frostedcan et couvercle doré de la canette">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://frosted-can-cake.netlify.app/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Bakery","name":"Amenda Cakes · Frostedcan","description":"Frosted Cake Can : des gâteaux gourmands en canette, 4 saveurs.","url":"https://frosted-can-cake.netlify.app/","image":"https://frosted-can-cake.netlify.app/assets/og-image.jpg","telephone":"+237654134482","address":{"@type":"PostalAddress","addressLocality":"Douala","addressCountry":"CM"},"currenciesAccepted":"XAF","priceRange":"2500-10000 FCFA","hasMenu":{"@type":"Menu","hasMenuSection":{"@type":"MenuSection","name":"Frosted Cake Can","hasMenuItem":[
+{"@type":"MenuItem","name":"Can’ Spéculos","offers":{"@type":"Offer","price":"3500","priceCurrency":"XAF"}},
+{"@type":"MenuItem","name":"Can’ Pistachio","offers":{"@type":"Offer","price":"3500","priceCurrency":"XAF"}},
+{"@type":"MenuItem","name":"Can’ Oreo","offers":{"@type":"Offer","price":"2500","priceCurrency":"XAF"}},
+{"@type":"MenuItem","name":"Can’ Bueno","offers":{"@type":"Offer","price":"2500","priceCurrency":"XAF"}},
+{"@type":"MenuItem","name":"Pack découverte","offers":{"@type":"Offer","price":"10000","priceCurrency":"XAF"}}]}}}
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/+esm" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,12 +59,8 @@ main{position:relative;z-index:3}
 
 /* mots géants derrière la canette */
 .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:"Playfair Display",serif;font-weight:900;font-size:19vw;line-height:.85;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:2px rgba(92,11,23,.16);opacity:0;visibility:hidden}
-.ghost.hero{font-size:15.5vw;text-align:center;-webkit-text-stroke:0;opacity:1;visibility:visible}
-.ghost.hero span{display:block;color:transparent;background:linear-gradient(100deg,rgba(255,255,255,0) 42%,rgba(255,249,230,.9) 50%,rgba(255,255,255,0) 58%) 100% 0/300% 100% no-repeat,linear-gradient(180deg,#f6d79a 0%,#d9a54a 45%,#9c6a22 100%);-webkit-background-clip:text;background-clip:text;animation:shine 6s 2.2s infinite}
-.ghost.hero span+span{animation-delay:2.5s}
-@keyframes shine{0%{background-position:100% 0,0 0}35%,100%{background-position:0% 0,0 0}}
-/* halo doré derrière la canette (héros) */
-#halo{position:absolute;left:50%;top:50%;width:min(80vw,820px);height:min(80vw,820px);border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(241,207,134,.45) 0%,rgba(217,165,74,.2) 30%,rgba(92,11,23,0) 66%);will-change:transform,opacity}
+.ghost.hero{font-size:15.5vw;text-align:center;-webkit-text-stroke:0;background:linear-gradient(180deg,#f6d79a 0%,#d9a54a 45%,#9c6a22 100%);-webkit-background-clip:text;background-clip:text;opacity:1;visibility:visible}
+.ghost.hero span{display:block}
 .ghost.light{-webkit-text-stroke:2px rgba(241,207,134,.22)}
 
 /* barre du haut */
@@ -166,7 +190,7 @@ footer em{font-family:"Playfair Display",serif;font-style:italic;letter-spacing:
   .item .sw{width:44px;height:44px}
   .item .qty{grid-column:1 / -1;justify-content:flex-end}
 }
-@media (prefers-reduced-motion:reduce){.cue::after,#loader .mono,.ghost.hero span{animation:none}}
+@media (prefers-reduced-motion:reduce){.cue::after,#loader .mono{animation:none}}
 
 /* chargement */
 #loader{position:fixed;top:0;right:0;bottom:0;left:0;z-index:50;display:grid;place-items:center;background:var(--burgundy);transition:opacity .8s}
@@ -193,12 +217,12 @@ footer em{font-family:"Playfair Display",serif;font-style:italic;letter-spacing:
   .pack-top{top:11vh}
   .ghost{font-size:24vw}
   .ghost.hero{font-size:22vw;top:42%}
-  #halo{top:40%;width:120vw;height:120vw}
   .cta{padding:10px 14px;font-size:13px}
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- integrity : le navigateur refuse le fichier s'il a été modifié sur le CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
 <body>
@@ -212,7 +236,6 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
 </script>
 
 <div id="behind">
-  <div id="halo"></div>
   <div class="ghost hero" data-for="0"><span>FROSTED</span><span>CAKE CAN</span></div>
   <div data-en="LAYERS" class="ghost" data-for="1">COUCHES</div>
   <div class="ghost" data-for="2">TOPPING</div>
@@ -323,8 +346,8 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
         <ul id="lines"><li class="empty" data-en="No cans yet.">Aucune canette pour l’instant.</li></ul>
         <div class="tot"><span>Total</span><b><span id="total">0</span> <small style="font-size:14px">FCFA</small></b></div>
         <label data-en="Details (area, date, occasion…)" for="note">Précisions (quartier, date, occasion…)</label>
-        <textarea id="note" placeholder="Ex. : retrait samedi, anniversaire à Bonamoussadi"></textarea>
-        <a class="send" id="send" href="https://wa.me/237654134482" target="_blank" rel="noopener" aria-disabled="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg><span data-en="Send on WhatsApp">Envoyer sur WhatsApp</span></a>
+        <textarea id="note" maxlength="500" autocomplete="off" placeholder="Ex. : retrait samedi, anniversaire à Bonamoussadi"></textarea>
+        <a class="send" id="send" href="https://wa.me/237654134482" target="_blank" rel="noopener noreferrer" aria-disabled="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg><span data-en="Send on WhatsApp">Envoyer sur WhatsApp</span></a>
         <p data-en="Or call 654 13 44 82" class="hint">Ou appelle le 654 13 44 82</p>
       </aside>
     </div>
@@ -352,7 +375,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
     </div>
     <div class="cards">
       <div class="ccard"><div><small data-en="WhatsApp and calls">WhatsApp et appel</small><b id="num">654 13 44 82</b></div>
-        <div class="acts"><button class="copy" id="copy" type="button" data-en="Copy">Copier</button><a class="wa" href="https://wa.me/237654134482" target="_blank" rel="noopener">WhatsApp</a></div></div>
+        <div class="acts"><button class="copy" id="copy" type="button" data-en="Copy">Copier</button><a class="wa" href="https://wa.me/237654134482" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div>
       <div class="ccard"><div><small data-en="Where">Où</small><b data-en="Douala · Cameroon">Douala · Cameroun</b></div></div>
     </div>
   </div>
@@ -408,7 +431,9 @@ function renderCart(){
   MENU.forEach(m => document.getElementById('q-' + m.id).textContent = qty[m.id]);
   document.getElementById('total').textContent = fmt(total);
   const msg = [T.hello, ...lines.map(m => `• ${qty[m.id]} × ${m.name} (${fmt(qty[m.id] * m.price)} FCFA)`), `${T.total} : ${fmt(total)} FCFA`];
-  if (note.value.trim()) msg.push(T.notes + ' : ' + note.value.trim());
+  // texte du client nettoyé (caractères de contrôle retirés, 500 caractères max) ; il ne va que dans le lien WhatsApp, jamais dans la page
+  const clean = note.value.replace(/[\u0000-\u0009\u000B-\u001F\u007F\u202A-\u202E\u2066-\u2069]/g, '').trim().slice(0, 500);
+  if (clean) msg.push(T.notes + ' : ' + clean);
   const a = document.getElementById('send');
   a.href = 'https://wa.me/237654134482?text=' + encodeURIComponent(msg.join('\n'));
   a.setAttribute('aria-disabled', lines.length ? 'false' : 'true');
@@ -429,25 +454,28 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
 
 </script>
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/+esm';
-import { RoomEnvironment } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js/+esm';
-import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js/+esm';
-
-/* modèle Blender (pot en verre épais, couvercle serti, languette, texte embouti) */
-let MODEL = null;
-async function loadModel(){
-  try {
-    const get = async () => {
-      const j = await (await fetch('assets/frostedcan.json')).json();
-      const bin = atob(j.glb), buf = new Uint8Array(bin.length);
-      for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
-      return new GLTFLoader().parseAsync(buf.buffer, '');
-    };
-    const g = await Promise.race([get(), new Promise((_, no) => setTimeout(() => no(new Error('délai')), 10000))]);
-    const by = {}; g.scene.traverse(o => { if (o.isMesh) by[o.name] = o; });
-    if (by.Jar && by.Lid) MODEL = by;
-  } catch (err) { console.warn('Modèle 3D indisponible, canette simplifiée utilisée', err); }
+/* Three.js : source principale jsDelivr, source de secours esm.sh si elle est bloquée ou trop lente.
+   Même version (0.160.0) des deux côtés : le rendu 3D est identique. */
+async function loadLibs(){
+  const SOURCES = [
+    ['https://cdn.jsdelivr.net/npm/three@0.160.0/+esm',
+     'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js/+esm'],
+    ['https://esm.sh/three@0.160.0',
+     'https://esm.sh/three@0.160.0/examples/jsm/environments/RoomEnvironment.js'],
+  ];
+  for (let i = 0; i < SOURCES.length; i++) {
+    try {
+      const wait = new Promise((_, no) => setTimeout(() => no(new Error('délai dépassé')), i === 0 ? 12000 : 20000));
+      const [T, R] = await Promise.race([Promise.all(SOURCES[i].map(u => import(u))), wait]);
+      return { THREE: T, RoomEnvironment: R.RoomEnvironment };
+    } catch (err) { console.warn('Three.js : source indisponible', SOURCES[i][0], err); }
+  }
+  throw new Error('Three.js indisponible');
 }
+let LIBS;
+try { LIBS = await loadLibs(); }
+catch (err) { document.getElementById('gl').style.display = 'none'; window.hideLoader(); throw err; } // la page reste utilisable sans la 3D
+const { THREE, RoomEnvironment } = LIBS;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -627,49 +655,13 @@ const rim = new THREE.DirectionalLight(0xffd59a, 2.6); rim.position.set(4, 2, -4
 const fill = new THREE.PointLight(0xffc98a, 6, 12); fill.position.set(2.5, -1, 3); scene.add(fill);
 
 const R = 0.62, HJ = 2.0, TOP = HJ * 0.86;
-const LABEL = labelTexture(), SHADOW = shadowTexture();
+const LABEL = labelTexture(), RIBS = ribTexture(), SHADOW = shadowTexture();
 const TEX = {}; // cache par saveur
 
-/* studio photo : bandes de lumière douces pour les reflets du verre et du métal */
-function studioEnv(){
-  const s = new THREE.Scene();
-  s.add(new THREE.Mesh(new THREE.SphereGeometry(30, 32, 16), new THREE.MeshBasicMaterial({ color: 0x3a1a14, side: THREE.BackSide })));
-  const panel = (w, h, pos, col, k) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(col).multiplyScalar(k), side: THREE.DoubleSide }));
-    m.position.set(...pos); m.lookAt(0, 0, 0); s.add(m); };
-  panel(2.2, 16, [-7, 0, 5], 0xfff3e2, 6);   // bande gauche
-  panel(1.3, 16, [7, 0, 4], 0xffe0b0, 4.5);  // bande droite
-  panel(14, 4, [0, 11, 0], 0xfff8ee, 2.5);   // plafond
-  panel(10, 10, [0, 2, 12], 0xffffff, .8);   // face
-  panel(6, 14, [0, 0, -10], 0xd9a54a, 2.2);  // contre-jour doré
-  return pmrem.fromScene(s, 0.015).texture;
-}
-const STUDIO = studioEnv();
-
-const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0.03, transparent: true, opacity: 0.13,
-  clearcoat: 1, clearcoatRoughness: 0.02, envMap: STUDIO, envMapIntensity: 2.6, side: THREE.DoubleSide, depthWrite: false });
-const baseMat = new THREE.MeshPhysicalMaterial({ color: 0xfff8ee, metalness: 0, roughness: 0.06, transparent: true, opacity: 0.32,
-  clearcoat: 1, envMap: STUDIO, envMapIntensity: 2.4, depthWrite: false });
-// couvercle aluminium doré
-const metalMat = new THREE.MeshStandardMaterial({ color: 0xe6c788, metalness: 1, roughness: 0.27, envMap: STUDIO, envMapIntensity: 1.5, side: THREE.DoubleSide });
-const tabMat = new THREE.MeshStandardMaterial({ color: 0xd9b46a, metalness: 1, roughness: 0.2, envMap: STUDIO, envMapIntensity: 1.6 });
-// liseré lumineux sur les bords du verre (effet verre épais)
-const fresMat = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-  uniforms: { c: { value: new THREE.Color(0xfff1d6) }, k: { value: .42 } },
-  vertexShader: 'varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }',
-  fragmentShader: 'uniform vec3 c; uniform float k; varying vec3 vN; varying vec3 vV; void main(){ float f = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 2.6); gl_FragColor = vec4(c * f * k, 1.0); }' });
-// gouttelettes de fraîcheur
-const dropMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0, transparent: true, opacity: .5, clearcoat: 1, envMap: STUDIO, envMapIntensity: 3.2, depthWrite: false });
-const dropGeo = new THREE.SphereGeometry(1, 10, 8);
-const DROPS = LOW ? 45 : 110;
-
-/* géométrie du couvercle (profil d'un fond de canette serti) et de la languette */
-const lidGeo = new THREE.LatheGeometry([[0,.105],[R-.17,.105],[R-.15,.098],[R-.12,.118],[R-.085,.122],[R-.06,.1],[R-.045,.088],[R-.03,.15],[R-.005,.172],[R+.022,.17],[R+.038,.15],[R+.042,.06],[R+.036,-.005],[R+.012,-.02]].map(([x,y]) => new THREE.Vector2(x, y)), 128);
-const tabGeo = (() => { const s = new THREE.Shape(), w = .08, y0 = -.07, y1 = .27, rr = .055;
-  s.moveTo(-w + rr, y0); s.lineTo(w - rr, y0); s.quadraticCurveTo(w, y0, w, y0 + rr); s.lineTo(w, y1 - rr); s.quadraticCurveTo(w, y1, w - rr, y1);
-  s.lineTo(-w + rr, y1); s.quadraticCurveTo(-w, y1, -w, y1 - rr); s.lineTo(-w, y0 + rr); s.quadraticCurveTo(-w, y0, -w + rr, y0);
-  const h = new THREE.Path(); h.absellipse(0, .175, .048, .042, 0, Math.PI * 2, true); s.holes.push(h);
-  return new THREE.ExtrudeGeometry(s, { depth: .01, bevelEnabled: true, bevelThickness: .004, bevelSize: .004, bevelSegments: 2, curveSegments: 18 }); })();
-const rivetGeo = new THREE.CylinderGeometry(.03, .036, .02, 24);
+const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.16,
+  clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 2.2, side: THREE.DoubleSide, depthWrite: false });
+const lidMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0.22, transparent: true, opacity: 0.34,
+  clearcoat: 1, clearcoatRoughness: 0.1, envMapIntensity: 2, normalMap: RIBS, normalScale: new THREE.Vector2(.6, .6), side: THREE.DoubleSide, depthWrite: false });
 const labelMat = new THREE.MeshStandardMaterial({ map: LABEL, transparent: true, alphaTest: 0.04, roughness: 0.45, metalness: 0, side: THREE.FrontSide });
 const crumbGeo = new THREE.IcosahedronGeometry(1, 0);
 
@@ -702,39 +694,20 @@ function buildCan(flavor){
 
   // pot transparent (profil tourné)
   const prof = [[0,0],[R-.1,0],[R-.03,.015],[R,.07],[R,HJ-.16],[R-.012,HJ-.13],[R-.012,HJ-.03],[R-.004,HJ]].map(([x,y]) => new THREE.Vector2(x, y));
-  const jarGeo = MODEL ? MODEL.Jar.geometry : new THREE.LatheGeometry(prof, 128);
-  const jar = new THREE.Mesh(jarGeo, glassMat); jar.renderOrder = 2; body.add(jar);
-  // fond épais et bourrelet du verre
-  const base = new THREE.Mesh(new THREE.CylinderGeometry(R - .03, R - .07, .06, 96), baseMat); base.position.y = .03; base.renderOrder = 2; body.add(base);
-  if (!MODEL) { const foot = new THREE.Mesh(new THREE.TorusGeometry(R - .04, .03, 16, 128), baseMat); foot.rotation.x = Math.PI / 2; foot.position.y = .04; foot.renderOrder = 2; body.add(foot); }
-  // liseré lumineux
-  const fres = new THREE.Mesh(jarGeo, fresMat); fres.scale.setScalar(1.003); fres.renderOrder = 5; body.add(fres);
+  const jar = new THREE.Mesh(new THREE.LatheGeometry(prof, 128), glassMat); jar.renderOrder = 2; body.add(jar);
   // texte imprimé
   const lab = new THREE.Mesh(new THREE.CylinderGeometry(R + 0.004, R + 0.004, 0.98, 160, 1, true), labelMat);
   lab.position.y = HJ * 0.47; lab.rotation.y = Math.PI; lab.renderOrder = 3; body.add(lab);
-  // gouttelettes
-  const drops = new THREE.InstancedMesh(dropGeo, dropMat, DROPS); drops.renderOrder = 6;
-  { const rd = rng(flavor.length * 17 + 3);
-    for (let i = 0; i < DROPS; i++) { const a = rd() * 6.283, y = .14 + rd() * (HJ - .32), sz = .007 + rd() * rd() * .016;
-      p.set(Math.sin(a) * (R + .006), y, Math.cos(a) * (R + .006)); e.set(0, a, 0); q.setFromEuler(e); s.set(sz, sz * (1.1 + rd() * .5), sz * .45);
-      m.compose(p, q, s); drops.setMatrixAt(i, m); } }
-  body.add(drops);
-  // couvercle aluminium serti + languette
-  const lid = new THREE.Group(); lid.position.y = HJ - 0.03; body.add(lid);
-  if (MODEL) {
-    [['Lid', metalMat], ['LidText', metalMat], ['Tab', tabMat], ['Rivet', tabMat]].forEach(([n, mat]) => {
-      const src = MODEL[n]; if (!src) return;
-      const mesh = new THREE.Mesh(src.geometry, mat); mesh.position.copy(src.position); mesh.quaternion.copy(src.quaternion); mesh.scale.copy(src.scale); lid.add(mesh); });
-  } else {
-    lid.add(new THREE.Mesh(lidGeo, metalMat));
-    const tab = new THREE.Mesh(tabGeo, tabMat); tab.rotation.x = Math.PI / 2; tab.position.set(0, .138, 0); lid.add(tab);
-    const rivet = new THREE.Mesh(rivetGeo, tabMat); rivet.position.y = .13; lid.add(rivet);
-  }
+  // couvercle
+  const lid = new THREE.Group(); lid.position.y = HJ - 0.02; body.add(lid);
+  const lidSide = new THREE.Mesh(new THREE.CylinderGeometry(R + .028, R + .028, .17, 128, 1, true), lidMat); lidSide.position.y = .085; lidSide.renderOrder = 4; lid.add(lidSide);
+  const lidTop = new THREE.Mesh(new THREE.CylinderGeometry(R + .028, R + .028, .02, 128), lidMat); lidTop.position.y = .17; lidTop.renderOrder = 4; lid.add(lidTop);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(R + .028, .012, 12, 128), lidMat); ring.rotation.x = Math.PI / 2; ring.position.y = .17; lid.add(ring);
   // ombre au sol
   const sh = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 2.6), new THREE.MeshBasicMaterial({ map: SHADOW, transparent: true, depthWrite: false, opacity: .8 }));
   sh.rotation.x = -Math.PI / 2; sh.position.y = -HJ / 2 - 0.07; can.add(sh);
 
-  can.userData = { spin, sideMat, topMat, crumbs, flavor: null, shadow: sh, lid };
+  can.userData = { spin, sideMat, topMat, crumbs, flavor: null, shadow: sh };
   setFlavor(can, flavor);
   return can;
 }
@@ -755,18 +728,6 @@ const fdata = []; { const r = rng(7), c = new THREE.Color();
     fdata.push({ x: side * (1.6 + r() * 2.6), y: -2.2 + r() * 4.4, z: -2.5 + r() * 3.2, s: .05 + r() * .07, sp: .3 + r() * .7, ph: r() * 6.28, depth: .5 + r() * 1.5 });
     c.set(FLAVORS.speculos.crumbs[i % 5]); floaters.setColorAt(i, c); } }
 scene.add(floaters);
-
-/* poussière d'or (héros et pack) */
-const DN = LOW ? 110 : 260, dpos = new Float32Array(DN * 3), dseed = [];
-{ const r = rng(21); for (let i = 0; i < DN; i++) dseed.push({ x: (r() - .5) * 7, y: (r() - .5) * 5, z: -2.5 + r() * 4, sp: .12 + r() * .3, ph: r() * 6.28 }); }
-const dustGeo = new THREE.BufferGeometry(); dustGeo.setAttribute('position', new THREE.BufferAttribute(dpos, 3));
-const sparkTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d');
-  const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,250,235,1)'); gr.addColorStop(.25, 'rgba(255,225,160,.75)'); gr.addColorStop(1, 'rgba(255,200,120,0)');
-  g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
-const dustMat = new THREE.PointsMaterial({ size: LOW ? .06 : .05, map: sparkTex, color: 0xf1cf86, transparent: true, opacity: .9, depthWrite: false, blending: THREE.AdditiveBlending });
-const dust = new THREE.Points(dustGeo, dustMat); dust.frustumCulled = false; scene.add(dust);
-const halo = document.getElementById('halo');
-const intro = { k: 0 };
 
 /* ───────────── poses par section ───────────── */
 // p = position canette, r = rotation, s = échelle, c = caméra, t = point visé
@@ -792,8 +753,6 @@ const POSES = {
     { px:.69,py:.12, rx:.12, rz:0,    s:.32,  cx:0,  cy:.3, cz:9.5, tx:0, ty:0,  call:0, pack:1, float:0 },
   ]
 };
-// le couvercle se soulève dans la vue du dessus (section 2)
-['desk', 'mob'].forEach(k => POSES[k].forEach((p, i) => p.lid = i === 2 ? 1 : 0));
 const SLOTS = { desk: { xs: [-2.55, -.85, .85], y: .05, s: .68 }, mob: { xs: [-.69, -.23, .23], ys: [.12, .12, .12], y: .12, s: .32 } };
 // le pack : la canette principale (Bueno) prend la 4e place, les 3 autres apparaissent
 
@@ -810,24 +769,13 @@ setLabels('speculos');
 /* ───────────── montage ───────────── */
 let main, extras = [];
 async function init(){
-  await Promise.all([
-    Promise.race([document.fonts.load('900 150px "Playfair Display"'), new Promise(r => setTimeout(r, 2500))]).catch(() => {}),
-    loadModel()
-  ]);
+  try { await Promise.race([document.fonts.load('900 150px "Playfair Display"'), new Promise(r => setTimeout(r, 2500))]); } catch (e) {}
   ORDER.forEach(texFor);
   main = buildCan('speculos'); scene.add(main);
   extras = ['speculos', 'pistache', 'oreo'].map(k => { const c = buildCan(k); c.visible = false; scene.add(c); return c; });
   buildScroll();
   requestAnimationFrame(loop);
   setTimeout(window.hideLoader, 200);
-  // entrée de la première page
-  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (calm) intro.k = 1;
-  else {
-    gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out', delay: .4 });
-    gsap.from('.ghost.hero span', { yPercent: 70, autoAlpha: 0, scale: .9, duration: 1.6, ease: 'expo.out', stagger: .15, delay: .3 });
-    gsap.from('.hero-side', { autoAlpha: 0, duration: 1.2, ease: 'power2.out', delay: 1.1 });
-    gsap.from('.hero-bottom > *', { autoAlpha: 0, y: 24, duration: 1, ease: 'power3.out', stagger: .12, delay: 1 });  }
 }
 
 /* ───────────── scroll ───────────── */
@@ -925,26 +873,10 @@ function loop(){
   else { const target = Math.round(angle / (Math.PI * 2)) * Math.PI * 2; angle += (target - angle) * Math.min(1, dt * 2.5); }
   const bob = Math.sin(t * 1.3) * .035;
 
-  // entrée : la canette monte, grandit et tourne avant de se poser
-  const ie = intro.k, io = 1 - ie;
-  main.position.set(s.px, s.py + bob - io * 2.6, 0);
-  main.rotation.set(s.rx + mouse.sy * .1 + io * .5, 0, s.rz - mouse.sx * .05);
-  main.scale.setScalar(s.s * (.6 + .4 * ie));
-  main.userData.spin.rotation.y = angle + flourish.v + mouse.sx * .35 + io * Math.PI * 4;
-  // couvercle qui se soulève
-  const L = main.userData.lid, lk = s.lid || 0;
-  L.position.set(lk * .42, HJ - .03 + lk * .62, lk * .05); L.rotation.set(lk * .25, 0, -lk * .55);
-
-  // halo et poussière d'or : surtout sur la première page
-  const heroVis = 1 - gsap.utils.clamp(0, 1, scrollY / (innerHeight * .8));
-  halo.style.opacity = (ie * heroVis).toFixed(3);
-  halo.style.transform = `translate(-50%,-50%) translate(${(mouse.sx * 26).toFixed(1)}px,${(mouse.sy * 18).toFixed(1)}px) scale(${(.45 + .55 * ie + Math.sin(t * 1.1) * .03).toFixed(3)})`;
-  dustMat.opacity = .9 * Math.max(heroVis, s.pack * .7) * ie;
-  for (let i = 0; i < DN; i++) { const d = dseed[i];
-    dpos[i * 3] = (d.x + Math.sin(t * .5 + d.ph) * .15) * (mode === 'mob' ? .5 : 1);
-    dpos[i * 3 + 1] = ((d.y + t * d.sp + 2.5) % 5 + 5) % 5 - 2.5;
-    dpos[i * 3 + 2] = d.z; }
-  dustGeo.attributes.position.needsUpdate = true;
+  main.position.set(s.px, s.py + bob, 0);
+  main.rotation.set(s.rx + mouse.sy * .1, 0, s.rz - mouse.sx * .05);
+  main.scale.setScalar(s.s);
+  main.userData.spin.rotation.y = angle + flourish.v + mouse.sx * .35;
   main.userData.shadow.material.opacity = .8 * (1 - Math.min(1, Math.abs(s.rx) * .9));
 
   // pack
