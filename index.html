@@ -183,8 +183,8 @@ footer em{font-family:"Playfair Display",serif;font-style:italic;letter-spacing:
 .cart .tot b{font-family:"Playfair Display",serif;font-size:34px;color:var(--gold-2)}
 .cart .fees{margin-top:8px;font-size:12.5px;line-height:1.45;color:rgba(251,243,228,.75);font-style:italic}
 .cart label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:16px 0 6px}
-.cart input[type="time"]{width:100%;border-radius:12px;border:1px solid rgba(241,207,134,.35);background:rgba(255,255,255,.06);color:var(--cream);padding:10px 12px;font:inherit;font-size:16px;min-height:46px;color-scheme:dark}
-.cart input[type="time"]:focus-visible,.cart textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.cart input[type="date"],.cart input[type="time"]{width:100%;border-radius:12px;border:1px solid rgba(241,207,134,.35);background:rgba(255,255,255,.06);color:var(--cream);padding:10px 12px;font:inherit;font-size:16px;min-height:46px;color-scheme:dark}
+.cart input[type="date"]:focus-visible,.cart input[type="time"]:focus-visible,.cart textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .cart textarea{width:100%;border-radius:12px;border:1px solid rgba(241,207,134,.35);background:rgba(255,255,255,.06);color:var(--cream);padding:10px 12px;font:inherit;font-size:14px;resize:vertical;min-height:64px}
 .send{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:16px;padding:15px 20px;border-radius:999px;background:var(--gold);color:var(--burgundy);font-weight:700;text-decoration:none;font-size:16px}
 .send[aria-disabled="true"]{opacity:.45;pointer-events:none}
@@ -377,9 +377,11 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
         <ul id="lines"><li class="empty" data-en="No cans yet.">Aucune canette pour l’instant.</li></ul>
         <div class="tot"><span>Total</span><b><span id="total">0</span> <small style="font-size:14px">FCFA</small></b></div>
         <p class="fees" data-en="Delivery fees are not included in this total.">Les frais de livraison ne sont pas inclus dans ce total.</p>
+        <label data-en="Preferred delivery date" for="jour">Date de livraison souhaitée</label>
+        <input type="date" id="jour" name="jour" autocomplete="off">
         <label data-en="Preferred delivery time" for="heure">Heure de livraison souhaitée</label>
         <input type="time" id="heure" name="heure" step="900" autocomplete="off">
-        <label data-en="Details (area, date, occasion…)" for="note">Précisions (quartier, date, occasion…)</label>
+        <label data-en="Details (area, occasion…)" for="note">Précisions (quartier, occasion…)</label>
         <textarea id="note" maxlength="500" autocomplete="off" placeholder="Ex. : retrait samedi, anniversaire à Bonamoussadi"></textarea>
         <a class="send" id="send" href="https://wa.me/237654134482" target="_blank" rel="noopener noreferrer" aria-disabled="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg><span data-en="Send on WhatsApp">Envoyer sur WhatsApp</span></a>
         <p data-en="Or call 654 13 44 82" class="hint">Ou appelle le 654 13 44 82</p>
@@ -435,8 +437,8 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
 </script>
 <script type="module">
 const EN = window.LANG === 'en';
-const T = EN ? { empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', fees:'delivery fees not included', notes:'Details', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove' }
-  : { empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', fees:'frais de livraison non inclus', notes:'Précisions', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer' };
+const T = EN ? { empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', fees:'delivery fees not included', notes:'Details', jour:'Preferred delivery date', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove' }
+  : { empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', fees:'frais de livraison non inclus', notes:'Précisions', jour:'Date de livraison souhaitée', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer' };
 /* ───────────── commande WhatsApp ───────────── */
 const MENU = [
   { id:'speculos', name: EN ? 'Can’ Speculoos' : 'Can’ Spéculos', desc: EN ? 'Vanilla sponge, Speculoos spread and biscuit' : 'Génoise vanille, pâte et biscuit Spéculos', price:4000, c:'#c47e3e' },
@@ -467,6 +469,9 @@ function renderCart(){
   const msg = [T.hello, ...lines.map(m => `• ${qty[m.id]} × ${m.name} (${fmt(qty[m.id] * m.price)} FCFA)`), `${T.total} : ${fmt(total)} FCFA (${T.fees})`];
   // texte du client nettoyé (caractères de contrôle retirés, 500 caractères max) ; il ne va que dans le lien WhatsApp, jamais dans la page
   const clean = note.value.replace(/[\u0000-\u0009\u000B-\u001F\u007F\u202A-\u202E\u2066-\u2069]/g, '').trim().slice(0, 500);
+  // date choisie : seulement le format AAAA-MM-JJ est accepté, affichée JJ/MM/AAAA
+  const jj = (document.getElementById('jour').value || '').trim();
+  if (/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(jj)) msg.push(T.jour + ' : ' + jj.split('-').reverse().join('/'));
   // heure choisie : seulement le format HH:MM est accepté
   const hh = (document.getElementById('heure').value || '').trim();
   if (/^([01]\d|2[0-3]):[0-5]\d$/.test(hh)) msg.push(T.heure + ' : ' + hh.replace(':', 'h'));
@@ -476,7 +481,8 @@ function renderCart(){
   a.setAttribute('aria-disabled', lines.length ? 'false' : 'true');
 }
 note.addEventListener('input', renderCart);
-['input', 'change'].forEach(ev => document.getElementById('heure').addEventListener(ev, renderCart));
+['jour', 'heure'].forEach(id => ['input', 'change'].forEach(ev => document.getElementById(id).addEventListener(ev, renderCart)));
+{ const d = new Date(), z = n => String(n).padStart(2, '0'); document.getElementById('jour').min = d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()); } // pas de date passée
 qty.pack = 1; renderCart();
 
 document.getElementById('copy').addEventListener('click', async e => {
@@ -564,9 +570,9 @@ if (EN) {
   FLAVORS.bueno.labels = ['Bueno spread','Kinder Bueno','Chocolate whipped cream','Chocolate sponge'];
 }
 const T = EN ? {
-  empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', fees:'delivery fees not included', notes:'Details', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove'
+  empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', fees:'delivery fees not included', notes:'Details', jour:'Preferred delivery date', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove'
 } : {
-  empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', fees:'frais de livraison non inclus', notes:'Précisions', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer'
+  empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', fees:'frais de livraison non inclus', notes:'Précisions', jour:'Date de livraison souhaitée', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer'
 };
 
 /* ───────────── appareil ───────────── */
@@ -739,7 +745,7 @@ const crumbGeo = new THREE.IcosahedronGeometry(1, 0);
 
 /* photos des canettes, déroulées autour du cylindre par tools/photos_canettes.py (de face = la photo exacte) */
 const PHOTOS = {};
-const PHOTO_V = 2; // à augmenter quand une photo de canette change (force le rechargement chez les visiteurs)
+const PHOTO_V = 3; // à augmenter quand une photo de canette change (force le rechargement chez les visiteurs)
 async function loadPhotos(){
   const loader = new THREE.TextureLoader();
   await Promise.all(ORDER.map(k => Promise.race([
