@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#5c0b17">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="Frosted Cake Can par Amenda Cakes : des gâteaux gourmands en canette, 4 saveurs. Douala, Cameroun.">
+<meta name="description" content="Frosted Can par Amenda Cakes : des gâteaux gourmands en canette, 4 saveurs. Douala, Cameroun.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="site.webmanifest">
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Amenda Cakes · Frostedcan">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:title" content="Frosted Cake Can par Amenda Cakes">
+<meta property="og:title" content="Frosted Can par Amenda Cakes">
 <meta property="og:description" content="Des gâteaux gourmands en canette : Spéculos, Pistachio, Red velvet Oreo, Bueno. Commande sur WhatsApp, Douala.">
 <meta property="og:url" content="https://frosted-can-cake.vercel.app/">
 <meta property="og:image" content="https://frosted-can-cake.vercel.app/assets/og-image.jpg">
@@ -28,7 +28,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://frosted-can-cake.vercel.app/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Bakery","name":"Amenda Cakes · Frostedcan","description":"Frosted Cake Can : des gâteaux gourmands en canette, 4 saveurs.","url":"https://frosted-can-cake.vercel.app/","image":"https://frosted-can-cake.vercel.app/assets/og-image.jpg","telephone":"+237654134482","address":{"@type":"PostalAddress","addressLocality":"Douala","addressCountry":"CM"},"currenciesAccepted":"XAF","priceRange":"3000-13500 FCFA","hasMenu":{"@type":"Menu","hasMenuSection":{"@type":"MenuSection","name":"Frosted Cake Can","hasMenuItem":[
+{"@context":"https://schema.org","@type":"Bakery","name":"Amenda Cakes · Frostedcan","description":"Frosted Can : des gâteaux gourmands en canette, 4 saveurs.","url":"https://frosted-can-cake.vercel.app/","image":"https://frosted-can-cake.vercel.app/assets/og-image.jpg","telephone":"+237654134482","address":{"@type":"PostalAddress","addressLocality":"Douala","addressCountry":"CM"},"currenciesAccepted":"XAF","priceRange":"3000-13500 FCFA","hasMenu":{"@type":"Menu","hasMenuSection":{"@type":"MenuSection","name":"Frosted Can","hasMenuItem":[
 {"@type":"MenuItem","name":"Can’ Spéculos","offers":{"@type":"Offer","price":"4000","priceCurrency":"XAF"}},
 {"@type":"MenuItem","name":"Can’ Pistachio","offers":{"@type":"Offer","price":"4000","priceCurrency":"XAF"}},
 {"@type":"MenuItem","name":"Can’ red velvet Oreo","offers":{"@type":"Offer","price":"3000","priceCurrency":"XAF"}},
@@ -642,13 +642,13 @@ function topTexture(key){
 function labelTexture(){
   const W = 2048, H = 512, [c, g] = makeCanvas(W, H);
   g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round';
-  [['FROSTED', 98], ['CAKE', 256], ['CAN', 414]].forEach(([t, y]) => {
+  [['FROSTED', 150], ['CAN', 330]].forEach(([t, y]) => {
     g.font = '900 150px "Playfair Display", Georgia, serif';
     g.lineWidth = 22; g.strokeStyle = '#fbf3e4'; g.strokeText(t, W / 2, y);
     g.fillStyle = '#3a1308'; g.fillText(t, W / 2, y);
   });
-  g.fillStyle = '#3a1308'; g.fillRect(W / 2 - 90, 488, 180, 5);
-  g.beginPath(); g.moveTo(W / 2, 480); g.lineTo(W / 2 + 10, 490); g.lineTo(W / 2, 500); g.lineTo(W / 2 - 10, 490); g.closePath(); g.fill();
+  g.fillStyle = '#3a1308'; g.fillRect(W / 2 - 90, 440, 180, 5);
+  g.beginPath(); g.moveTo(W / 2, 432); g.lineTo(W / 2 + 10, 442); g.lineTo(W / 2, 452); g.lineTo(W / 2 - 10, 442); g.closePath(); g.fill();
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = LOW ? 2 : 8; return t;
 }
 
