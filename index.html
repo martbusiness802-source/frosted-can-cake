@@ -706,6 +706,17 @@ const tabMat = new THREE.MeshStandardMaterial({ color: 0xd9b46a, metalness: 1, r
 const labelMat = new THREE.MeshStandardMaterial({ map: LABEL, transparent: true, alphaTest: 0.04, roughness: 0.45, metalness: 0, side: THREE.FrontSide });
 const crumbGeo = new THREE.IcosahedronGeometry(1, 0);
 
+/* photos des canettes, déroulées autour du cylindre par tools/photos_canettes.py (de face = la photo exacte) */
+const PHOTOS = {};
+async function loadPhotos(){
+  const loader = new THREE.TextureLoader();
+  await Promise.all(ORDER.map(k => Promise.race([
+    loader.loadAsync('assets/canette-' + k + (LOW ? '-lo' : '') + '.jpg').then(t => {
+      t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = LOW ? 2 : 8; PHOTOS[k] = t; }),
+    new Promise(r => setTimeout(r, 12000))
+  ]).catch(err => console.warn('Photo de canette indisponible :', k, err))));
+}
+
 function texFor(k){ if (!TEX[k]) TEX[k] = { side: contentsTexture(k), top: topTexture(k) }; return TEX[k]; }
 
 function buildCan(flavor){
@@ -739,6 +750,11 @@ function buildCan(flavor){
   // texte imprimé
   const lab = new THREE.Mesh(new THREE.CylinderGeometry(R + 0.004, R + 0.004, 0.98, 160, 1, true), labelMat);
   lab.position.y = HJ * 0.47; lab.rotation.y = Math.PI; lab.renderOrder = 3; body.add(lab);
+  // photo de la canette (remplace le contenu dessiné et l'étiquette quand elle est chargée)
+  const PH0 = .06, PH1 = HJ - .05;
+  const photoMat = new THREE.MeshStandardMaterial({ roughness: .5, metalness: 0, emissive: 0xffffff, emissiveIntensity: .35 });
+  const photo = new THREE.Mesh(new THREE.CylinderGeometry(R - .006, R - .006, PH1 - PH0, 160, 1, true), photoMat);
+  photo.position.y = (PH0 + PH1) / 2; photo.rotation.y = Math.PI; photo.visible = false; body.add(photo);
   // couvercle
   const lid = new THREE.Group(); lid.position.y = HJ - 0.02; body.add(lid);
   if (MODEL) {
@@ -754,7 +770,7 @@ function buildCan(flavor){
   const sh = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 2.6), new THREE.MeshBasicMaterial({ map: SHADOW, transparent: true, depthWrite: false, opacity: .8 }));
   sh.rotation.x = -Math.PI / 2; sh.position.y = -HJ / 2 - 0.07; can.add(sh);
 
-  can.userData = { spin, sideMat, topMat, crumbs, flavor: null, shadow: sh };
+  can.userData = { spin, sideMat, topMat, crumbs, flavor: null, shadow: sh, photo, photoMat, side, lab };
   setFlavor(can, flavor);
   return can;
 }
@@ -763,6 +779,9 @@ function setFlavor(can, k){
   const u = can.userData; if (u.flavor === k) return; u.flavor = k;
   const t = texFor(k); u.sideMat.map = u.sideMat.bumpMap = t.side; u.topMat.map = u.topMat.bumpMap = t.top;
   u.sideMat.needsUpdate = u.topMat.needsUpdate = true;
+  const ph = PHOTOS[k];
+  u.photo.visible = !!ph; u.side.visible = u.lab.visible = !ph;
+  if (ph) { u.photoMat.map = u.photoMat.emissiveMap = ph; u.photoMat.needsUpdate = true; }
   const pal = FLAVORS[k].crumbs, c = new THREE.Color(), r = rng(5);
   for (let i = 0; i < u.crumbs.count; i++) { c.set(pal[Math.floor(r() * pal.length)]); u.crumbs.setColorAt(i, c); }
   u.crumbs.instanceColor.needsUpdate = true;
@@ -818,7 +837,8 @@ let main, extras = [];
 async function init(){
   await Promise.all([
     Promise.race([document.fonts.load('900 150px "Playfair Display"'), new Promise(r => setTimeout(r, 2500))]).catch(() => {}),
-    loadModel()
+    loadModel(),
+    loadPhotos()
   ]);
   ORDER.forEach(texFor);
   main = buildCan('speculos'); scene.add(main);
