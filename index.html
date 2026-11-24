@@ -19,7 +19,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="Frosted Can par Amenda Cakes">
-<meta property="og:description" content="Des gâteaux gourmands en canette : Spéculos, Pistachio, Red velvet Oreo, Bueno. Commande sur WhatsApp, Douala.">
+<meta property="og:description" content="Des gâteaux gourmands en canette : Spéculos, Pistachio, Oreo, Bueno. Commande sur WhatsApp, Douala.">
 <meta property="og:url" content="https://frosted-can-cake.vercel.app/">
 <meta property="og:image" content="https://frosted-can-cake.vercel.app/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
 {"@context":"https://schema.org","@type":"Bakery","name":"Amenda Cakes · Frostedcan","description":"Frosted Can : des gâteaux gourmands en canette, 4 saveurs.","url":"https://frosted-can-cake.vercel.app/","image":"https://frosted-can-cake.vercel.app/assets/og-image.jpg","telephone":"+237654134482","address":{"@type":"PostalAddress","addressLocality":"Douala","addressCountry":"CM"},"currenciesAccepted":"XAF","priceRange":"3000-13500 FCFA","hasMenu":{"@type":"Menu","hasMenuSection":{"@type":"MenuSection","name":"Frosted Can","hasMenuItem":[
 {"@type":"MenuItem","name":"Can’ Spéculos","offers":{"@type":"Offer","price":"4000","priceCurrency":"XAF"}},
 {"@type":"MenuItem","name":"Can’ Pistachio","offers":{"@type":"Offer","price":"4000","priceCurrency":"XAF"}},
-{"@type":"MenuItem","name":"Can’ red velvet Oreo","offers":{"@type":"Offer","price":"3000","priceCurrency":"XAF"}},
+{"@type":"MenuItem","name":"Can’ Oreo","offers":{"@type":"Offer","price":"3000","priceCurrency":"XAF"}},
 {"@type":"MenuItem","name":"Can’ Bueno","offers":{"@type":"Offer","price":"3000","priceCurrency":"XAF"}},
 {"@type":"MenuItem","name":"Pack découverte","offers":{"@type":"Offer","price":"13500","priceCurrency":"XAF"}}]}}}
 </script>
@@ -272,7 +272,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
   <div class="ghost" data-for="2">TOPPING</div>
   <div data-en="SPECULOOS" class="ghost" data-for="3">SPÉCULOS</div>
   <div data-en="PISTACHIO" class="ghost" data-for="4">PISTACHE</div>
-  <div class="ghost" data-for="5">RED VELVET</div>
+  <div class="ghost" data-for="5">OREO</div>
   <div class="ghost" data-for="6">BUENO</div>
   <div data-en="DISCOVERY" class="ghost light" data-for="7">DÉCOUVERTE</div>
 </div>
@@ -337,7 +337,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
   <section class="sec dark s-velv" data-bg="#9e1b2b" data-flavor="oreo">
     <div class="txt right">
       <div data-en="Flavour 03 / 04" class="kicker a">Saveur 03 / 04</div>
-      <h2 data-en="Can’ &lt;em&gt;Red Velvet Oreo&lt;/em&gt;" class="split">Can’ <em>red velvet Oreo</em></h2>
+      <h2 class="split">Can’ <em>Oreo</em></h2>
       <p data-en="Red velvet sponge, Oreo whipped cream and Oreo biscuit." class="lead a">Génoise red velvet, crème chantilly Oreo et biscuit Oreo.</p>
       <div class="price a"><span class="count" data-v="3000">3 000</span><small>FCFA</small></div>
     </div>
@@ -443,7 +443,7 @@ const T = EN ? { empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like t
 const MENU = [
   { id:'speculos', name: EN ? 'Can’ Speculoos' : 'Can’ Spéculos', desc: EN ? 'Vanilla sponge, Speculoos spread and biscuit' : 'Génoise vanille, pâte et biscuit Spéculos', price:4000, c:'#c47e3e' },
   { id:'pistache', name:'Can’ Pistachio', desc: EN ? 'Chocolate sponge, pistachio spread and ground pistachio' : 'Génoise chocolat, pâte et poudre de pistache', price:4000, c:'#a3c63f' },
-  { id:'oreo', name: EN ? 'Can’ Red Velvet Oreo' : 'Can’ red velvet Oreo', desc: EN ? 'Red velvet sponge, Oreo cream and biscuit' : 'Génoise red velvet, crème et biscuit Oreo', price:3000, c:'#9e1b2b' },
+  { id:'oreo', name:'Can’ Oreo', desc: EN ? 'Red velvet sponge, Oreo cream and biscuit' : 'Génoise red velvet, crème et biscuit Oreo', price:3000, c:'#9e1b2b' },
   { id:'bueno', name:'Can’ Bueno', desc: EN ? 'Chocolate sponge, Bueno spread and Kinder Bueno' : 'Génoise chocolat, pâte Bueno et Kinder Bueno', price:3000, c:'#a9652d' },
   { id:'pack', name: EN ? 'Discovery pack' : 'Pack découverte', desc: EN ? 'All 4 flavours' : 'Les 4 saveurs', price:13500, c:'#d9a54a', tip: EN ? 'Save 500 FCFA' : '500 FCFA d’économie' },
 ];
