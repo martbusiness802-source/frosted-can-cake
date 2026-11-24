@@ -789,8 +789,8 @@ function buildScroll(){
   if (mode === 'mob') {
     // téléphone : même mouvement de côté que sur PC (côté repris des poses PC), calé sur la largeur visible
     const hw = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 9.5 * (innerWidth / innerHeight);
-    const sz = Math.min(.95, hw * .6);
-    P = P.map((p, i) => (i >= 1 && i <= 6) ? { ...p, px: Math.sign(POSES.desk[i].px) * hw * .53, py: 0, s: sz, cx: 0, tx: 0 } : p);
+    const sz = Math.min(.95, hw * .54);
+    P = P.map((p, i) => (i >= 1 && i <= 6) ? { ...p, px: Math.sign(POSES.desk[i].px) * hw * .5, py: 0, s: sz, cx: 0, tx: 0 } : p);
   }
   Object.assign(state, P[0]);
   master = gsap.timeline({ defaults: { ease: 'power2.inOut' }, scrollTrigger: { trigger: 'main', start: 'top top', end: 'bottom bottom', scrub: 1.2 } });
