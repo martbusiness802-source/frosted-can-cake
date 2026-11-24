@@ -642,13 +642,13 @@ function topTexture(key){
 function labelTexture(){
   const W = 2048, H = 512, [c, g] = makeCanvas(W, H);
   g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round';
-  [['FROSTED', 150], ['CAN', 330]].forEach(([t, y]) => {
+  [['FROSTED', 98], ['CAKE', 256], ['CAN', 414]].forEach(([t, y]) => {
     g.font = '900 150px "Playfair Display", Georgia, serif';
     g.lineWidth = 22; g.strokeStyle = '#fbf3e4'; g.strokeText(t, W / 2, y);
     g.fillStyle = '#3a1308'; g.fillText(t, W / 2, y);
   });
-  g.fillStyle = '#3a1308'; g.fillRect(W / 2 - 90, 440, 180, 5);
-  g.beginPath(); g.moveTo(W / 2, 432); g.lineTo(W / 2 + 10, 442); g.lineTo(W / 2, 452); g.lineTo(W / 2 - 10, 442); g.closePath(); g.fill();
+  g.fillStyle = '#3a1308'; g.fillRect(W / 2 - 90, 488, 180, 5);
+  g.beginPath(); g.moveTo(W / 2, 480); g.lineTo(W / 2 + 10, 490); g.lineTo(W / 2, 500); g.lineTo(W / 2 - 10, 490); g.closePath(); g.fill();
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = LOW ? 2 : 8; return t;
 }
 
