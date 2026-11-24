@@ -1,4 +1,4 @@
-# frostedcan-3d — Amenda Cakes · Frosted Cake Can
+# frosted-can-cake — Amenda Cakes · Frosted Cake Can
 
 Site vitrine bilingue (FR / EN) d'Amenda Cakes, Douala : canette 3D modélisée dans Blender et animée au défilement (Three.js + GSAP), les 4 saveurs, pack découverte et commande WhatsApp avec total automatique.
 
