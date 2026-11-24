@@ -493,21 +493,26 @@ async function loadLibs(){
 loadLibs().then(LIBS => {
 const { THREE, RoomEnvironment, GLTFLoader } = LIBS;
 
-/* canette modélisée dans Blender : pot en verre épais, couvercle doré serti, languette, texte embouti.
+/* canettes modélisées dans Blender.
+   CAN   : canette aluminium habillée avec les photos produit (modèle principal)
+   MODEL : ancien pot en verre + couvercle doré (secours si la canette alu ne charge pas)
    Seule la forme change : poses, rotations et animations restent celles d'origine. */
-let MODEL = null;
+let MODEL = null, CAN = null;
+async function loadGlb(url){
+  const get = async () => {
+    const j = await (await fetch(url)).json();
+    const bin = atob(j.glb), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    return new GLTFLoader().parseAsync(buf.buffer, '');
+  };
+  const g = await Promise.race([get(), new Promise((_, no) => setTimeout(() => no(new Error('délai')), 12000))]);
+  const by = {}; g.scene.traverse(o => { if (o.isMesh) by[o.name] = o; }); return by;
+}
 async function loadModel(){
-  try {
-    const get = async () => {
-      const j = await (await fetch('assets/frostedcan.json')).json();
-      const bin = atob(j.glb), buf = new Uint8Array(bin.length);
-      for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
-      return new GLTFLoader().parseAsync(buf.buffer, '');
-    };
-    const g = await Promise.race([get(), new Promise((_, no) => setTimeout(() => no(new Error('délai')), 12000))]);
-    const by = {}; g.scene.traverse(o => { if (o.isMesh) by[o.name] = o; });
-    if (by.Jar && by.Lid) MODEL = by;
-  } catch (err) { console.warn('Modèle Blender indisponible, canette d’origine utilisée', err); }
+  try { const by = await loadGlb('assets/canette-alu.json'); if (by.CanBody && by.CanMetal) { CAN = by; return; } }
+  catch (err) { console.warn('Canette aluminium indisponible', err); }
+  try { const by = await loadGlb('assets/frostedcan.json'); if (by.Jar && by.Lid) MODEL = by; }
+  catch (err) { console.warn('Modèle Blender indisponible, canette d’origine utilisée', err); }
 }
 
 gsap.registerPlugin(ScrollTrigger);
@@ -703,6 +708,9 @@ const STUDIO = (() => { const s = new THREE.Scene();
   return pmrem.fromScene(s, 0.015).texture; })();
 const metalMat = new THREE.MeshStandardMaterial({ color: 0xe6c788, metalness: 1, roughness: 0.27, envMap: STUDIO, envMapIntensity: 1.5, side: THREE.DoubleSide });
 const tabMat = new THREE.MeshStandardMaterial({ color: 0xd9b46a, metalness: 1, roughness: 0.2, envMap: STUDIO, envMapIntensity: 1.6 });
+const aluMat = new THREE.MeshStandardMaterial({ color: 0xd8dbe0, metalness: 1, roughness: 0.24, envMap: STUDIO, envMapIntensity: 1.5 });
+const FLAT = {}; // texture dessinée en secours, orientée pour la canette alu
+function flatFor(k){ if (!FLAT[k]) { const t = texFor(k).side.clone(); t.flipY = false; t.needsUpdate = true; FLAT[k] = t; } return FLAT[k]; }
 const labelMat = new THREE.MeshStandardMaterial({ map: LABEL, transparent: true, alphaTest: 0.04, roughness: 0.45, metalness: 0, side: THREE.FrontSide });
 const crumbGeo = new THREE.IcosahedronGeometry(1, 0);
 
@@ -766,11 +774,20 @@ function buildCan(flavor){
   const lidTop = new THREE.Mesh(new THREE.CylinderGeometry(R + .028, R + .028, .02, 128), lidMat); lidTop.position.y = .17; lidTop.renderOrder = 4; lid.add(lidTop);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(R + .028, .012, 12, 128), lidMat); ring.rotation.x = Math.PI / 2; ring.position.y = .17; lid.add(ring);
   }
+  // canette aluminium habillée par la photo (Blender)
+  let canBody = null, canMat = null;
+  if (CAN) {
+    [side, topDisc, bottom, crumbs, jar, lab, photo, lid].forEach(o => o.visible = false);
+    canMat = new THREE.MeshPhysicalMaterial({ roughness: .32, metalness: 0, clearcoat: 1, clearcoatRoughness: .08, envMap: STUDIO, envMapIntensity: 1.1, emissive: 0xffffff, emissiveIntensity: .28 });
+    canBody = new THREE.Mesh(CAN.CanBody.geometry, canMat); body.add(canBody);
+    ['CanMetal', 'CanTab', 'CanRivet'].forEach(n => { const src = CAN[n]; if (!src) return;
+      const mesh = new THREE.Mesh(src.geometry, aluMat); mesh.position.copy(src.position); mesh.quaternion.copy(src.quaternion); mesh.scale.copy(src.scale); body.add(mesh); });
+  }
   // ombre au sol
   const sh = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 2.6), new THREE.MeshBasicMaterial({ map: SHADOW, transparent: true, depthWrite: false, opacity: .8 }));
   sh.rotation.x = -Math.PI / 2; sh.position.y = -HJ / 2 - 0.07; can.add(sh);
 
-  can.userData = { spin, sideMat, topMat, crumbs, flavor: null, shadow: sh, photo, photoMat, side, lab };
+  can.userData = { spin, sideMat, topMat, crumbs, flavor: null, shadow: sh, photo, photoMat, side, lab, canMat };
   setFlavor(can, flavor);
   return can;
 }
@@ -779,6 +796,7 @@ function setFlavor(can, k){
   const u = can.userData; if (u.flavor === k) return; u.flavor = k;
   const t = texFor(k); u.sideMat.map = u.sideMat.bumpMap = t.side; u.topMat.map = u.topMat.bumpMap = t.top;
   u.sideMat.needsUpdate = u.topMat.needsUpdate = true;
+  if (u.canMat) { u.canMat.map = u.canMat.emissiveMap = PHOTOS[k] || flatFor(k); u.canMat.needsUpdate = true; return; }
   const ph = PHOTOS[k];
   u.photo.visible = !!ph; u.side.visible = u.lab.visible = !ph;
   if (ph) { u.photoMat.map = u.photoMat.emissiveMap = ph; u.photoMat.needsUpdate = true; }
@@ -840,6 +858,7 @@ async function init(){
     loadModel(),
     loadPhotos()
   ]);
+  if (CAN) Object.values(PHOTOS).forEach(t => { t.flipY = false; t.needsUpdate = true; });
   ORDER.forEach(texFor);
   main = buildCan('speculos'); scene.add(main);
   extras = ['speculos', 'pistache', 'oreo'].map(k => { const c = buildCan(k); c.visible = false; scene.add(c); return c; });
@@ -986,7 +1005,7 @@ function loop(){
   if (s.call > .01 && mode === 'desk') {
     main.updateMatrixWorld();
     ANCH.forEach((a, i) => {
-      v3.set(Math.sin(a.a) * R * 1.02, a.y + .06, Math.cos(a.a) * R * 1.02); main.localToWorld(v3); v3.project(camera);
+      const cr = CAN ? .51 : R * 1.02; v3.set(Math.sin(a.a) * cr, a.y + .06, Math.cos(a.a) * cr); main.localToWorld(v3); v3.project(camera);
       const x = (v3.x * .5 + .5) * innerWidth, y = (-v3.y * .5 + .5) * innerHeight;
       const k = gsap.utils.clamp(0, 1, s.call * 1.4 - i * .12);
       const el = coEls[i]; el.style.opacity = k; el.style.transform = `translate(${x}px,${y}px) translateY(-50%)`;
