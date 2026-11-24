@@ -997,5 +997,10 @@ addEventListener('resize', () => {
 init().catch(err => { console.error(err); window.hideLoader(); });
 </script>
 
+<!-- Vercel Speed Insights (version HTML, sans paquet npm) : actif seulement quand le site est hébergé sur Vercel -->
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
