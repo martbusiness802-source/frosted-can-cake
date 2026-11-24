@@ -162,6 +162,7 @@ footer em{font-family:"Playfair Display",serif;font-style:italic;letter-spacing:
 .cart .empty{color:rgba(251,243,228,.6)}
 .cart .tot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(241,207,134,.3);padding-top:14px;font-variant-numeric:tabular-nums}
 .cart .tot b{font-family:"Playfair Display",serif;font-size:34px;color:var(--gold-2)}
+.cart .fees{margin-top:8px;font-size:12.5px;line-height:1.45;color:rgba(251,243,228,.75);font-style:italic}
 .cart label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:16px 0 6px}
 .cart input[type="time"]{width:100%;border-radius:12px;border:1px solid rgba(241,207,134,.35);background:rgba(255,255,255,.06);color:var(--cream);padding:10px 12px;font:inherit;font-size:16px;min-height:46px;color-scheme:dark}
 .cart input[type="time"]:focus-visible,.cart textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
@@ -352,6 +353,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
         <h3 data-en="Your order">Ta commande</h3>
         <ul id="lines"><li class="empty" data-en="No cans yet.">Aucune canette pour l’instant.</li></ul>
         <div class="tot"><span>Total</span><b><span id="total">0</span> <small style="font-size:14px">FCFA</small></b></div>
+        <p class="fees" data-en="Delivery fees are not included in this total.">Les frais de livraison ne sont pas inclus dans ce total.</p>
         <label data-en="Preferred delivery time" for="heure">Heure de livraison souhaitée</label>
         <input type="time" id="heure" name="heure" step="900" autocomplete="off">
         <label data-en="Details (area, date, occasion…)" for="note">Précisions (quartier, date, occasion…)</label>
@@ -410,8 +412,8 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
 </script>
 <script type="module">
 const EN = window.LANG === 'en';
-const T = EN ? { empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', notes:'Details', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove' }
-  : { empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', notes:'Précisions', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer' };
+const T = EN ? { empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', fees:'delivery fees not included', notes:'Details', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove' }
+  : { empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', fees:'frais de livraison non inclus', notes:'Précisions', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer' };
 /* ───────────── commande WhatsApp ───────────── */
 const MENU = [
   { id:'speculos', name: EN ? 'Can’ Speculoos' : 'Can’ Spéculos', desc: EN ? 'Vanilla sponge, Speculoos spread and biscuit' : 'Génoise vanille, pâte et biscuit Spéculos', price:4000, c:'#c47e3e' },
@@ -439,7 +441,7 @@ function renderCart(){
   if (!lines.length) ul.innerHTML = `<li class="empty">${T.empty}</li>`;
   MENU.forEach(m => document.getElementById('q-' + m.id).textContent = qty[m.id]);
   document.getElementById('total').textContent = fmt(total);
-  const msg = [T.hello, ...lines.map(m => `• ${qty[m.id]} × ${m.name} (${fmt(qty[m.id] * m.price)} FCFA)`), `${T.total} : ${fmt(total)} FCFA`];
+  const msg = [T.hello, ...lines.map(m => `• ${qty[m.id]} × ${m.name} (${fmt(qty[m.id] * m.price)} FCFA)`), `${T.total} : ${fmt(total)} FCFA (${T.fees})`];
   // texte du client nettoyé (caractères de contrôle retirés, 500 caractères max) ; il ne va que dans le lien WhatsApp, jamais dans la page
   const clean = note.value.replace(/[\u0000-\u0009\u000B-\u001F\u007F\u202A-\u202E\u2066-\u2069]/g, '').trim().slice(0, 500);
   // heure choisie : seulement le format HH:MM est accepté
@@ -534,9 +536,9 @@ if (EN) {
   FLAVORS.bueno.labels = ['Bueno spread','Kinder Bueno','Chocolate whipped cream','Chocolate sponge'];
 }
 const T = EN ? {
-  empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', notes:'Details', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove'
+  empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like to order:', total:'Total', fees:'delivery fees not included', notes:'Details', heure:'Preferred delivery time', copy:'Copy', copied:'Copied', sel:'Selected', add:'Add', rem:'Remove'
 } : {
-  empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', notes:'Précisions', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer'
+  empty:'Aucune canette pour l’instant.', hello:'Bonjour Amenda Cakes, je souhaite commander :', total:'Total', fees:'frais de livraison non inclus', notes:'Précisions', heure:'Heure de livraison souhaitée', copy:'Copier', copied:'Copié', sel:'Sélectionné', add:'Ajouter', rem:'Retirer'
 };
 
 /* ───────────── appareil ───────────── */
