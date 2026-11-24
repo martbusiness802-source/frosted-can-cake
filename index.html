@@ -67,6 +67,7 @@ main{position:relative;z-index:3}
 .hero-bottom .tag::before,.hero-bottom .tag::after,.hero-bottom p::before,.hero-bottom p::after{content:"";flex:0 0 clamp(28px,6vw,90px);height:1px;background:linear-gradient(90deg,rgba(217,165,74,0),var(--gold))}
 .hero-bottom .tag::after,.hero-bottom p::after{background:linear-gradient(90deg,var(--gold),rgba(217,165,74,0))}
 .cta::after{content:" →"}
+@media (min-width:821px) and (min-aspect-ratio:9/10){.ghost.hero{top:39%}}
 /* mots géants derrière la canette */
 .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:"Playfair Display",serif;font-weight:900;font-size:19vw;line-height:.85;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:2px rgba(92,11,23,.16);opacity:0;visibility:hidden}
 .ghost.hero{font-size:15.5vw;text-align:center;-webkit-text-stroke:0;background:linear-gradient(180deg,#f6d79a 0%,#d9a54a 45%,#9c6a22 100%);-webkit-background-clip:text;background-clip:text;opacity:1;visibility:visible}
@@ -234,7 +235,8 @@ footer em{font-family:"Playfair Display",serif;font-style:italic;letter-spacing:
   .pack-top{top:11vh}
   .ghost{font-size:24vw}
   .ghost.hero{font-size:22vw;top:42%}
-  #decor{background-image:url(assets/accueil-decor-mobile.jpg);background-position:center bottom}
+  #decor{background:url(assets/accueil-decor.jpg) center bottom/auto 46% no-repeat,url(assets/accueil-decor-mobile.jpg) center top/cover no-repeat #5c0b17}
+  .hero-bottom .tag::before,.hero-bottom .tag::after{display:none}
   .cta{padding:10px 14px;font-size:13px}
 }
 </style>
