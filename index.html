@@ -68,6 +68,15 @@ main{position:relative;z-index:3}
 .hero-bottom .tag::after,.hero-bottom p::after{background:linear-gradient(90deg,var(--gold),rgba(217,165,74,0))}
 .cta::after{content:" →"}
 @media (min-width:821px) and (min-aspect-ratio:9/10){.ghost.hero{top:39%}}
+/* sections saveurs : fond aux couleurs de la canette, nom en grand derrière (visible sans gêner) */
+.ghost[data-for="3"]{color:rgba(122,62,14,.14);-webkit-text-stroke:2px rgba(122,62,14,.34)}
+.ghost[data-for="4"]{color:rgba(58,84,16,.14);-webkit-text-stroke:2px rgba(58,84,16,.34)}
+.ghost[data-for="5"]{color:rgba(255,238,232,.09);-webkit-text-stroke:2px rgba(255,238,232,.30)}
+.ghost[data-for="6"]{color:rgba(240,206,160,.09);-webkit-text-stroke:2px rgba(240,206,160,.30)}
+.s-spec .kicker,.s-spec h2 em{color:#8a4710}.s-spec p.lead{color:#5e3412}.s-spec .price small{color:#8a4710}
+.s-pist .kicker,.s-pist h2 em{color:#466312}.s-pist p.lead{color:#34400f}.s-pist .price small{color:#466312}
+.s-velv h2 em,.s-velv .kicker,.s-buen h2 em,.s-buen .kicker{color:var(--gold-2)}
+.dark .price{color:var(--cream)}.dark .price small{color:var(--gold-2)}
 /* mots géants derrière la canette */
 .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:"Playfair Display",serif;font-weight:900;font-size:19vw;line-height:.85;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:2px rgba(92,11,23,.16);opacity:0;visibility:hidden}
 .ghost.hero{font-size:15.5vw;text-align:center;-webkit-text-stroke:0;background:linear-gradient(180deg,#f6d79a 0%,#d9a54a 45%,#9c6a22 100%);-webkit-background-clip:text;background-clip:text;opacity:1;visibility:visible}
@@ -219,6 +228,7 @@ footer em{font-family:"Playfair Display",serif;font-style:italic;letter-spacing:
   .txt.left{left:max(10px,env(safe-area-inset-left,0px));right:auto}
   .txt.right{right:max(10px,env(safe-area-inset-right,0px));left:auto}
   .dark .txt{background:rgba(60,8,16,.7)}
+  .s-spec .txt{background:rgba(255,240,214,.86)}.s-pist .txt{background:rgba(244,250,226,.86)}.s-buen .txt{background:rgba(40,20,10,.72)}
   .txt .kicker{font-size:10px;letter-spacing:.16em;gap:7px}.txt .kicker::before{width:16px}
   .sec h2{font-size:clamp(21px,6.2vw,32px)}
   p.lead{margin-top:8px;font-size:12.5px;line-height:1.45}
@@ -308,7 +318,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
   </section>
 
   <!-- 3 à 6 · les saveurs -->
-  <section class="sec" data-bg="#f2dcc0" data-flavor="speculos">
+  <section class="sec s-spec" data-bg="#efc27a" data-flavor="speculos">
     <div class="txt right">
       <div data-en="Flavour 01 / 04" class="kicker a">Saveur 01 / 04</div>
       <h2 data-en="Can’ &lt;em&gt;Speculoos&lt;/em&gt;" class="split">Can’ <em>Spéculos</em></h2>
@@ -316,7 +326,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
       <div class="price a"><span class="count" data-v="4000">4 000</span><small>FCFA</small></div>
     </div>
   </section>
-  <section class="sec" data-bg="#e9eed3" data-flavor="pistache">
+  <section class="sec s-pist" data-bg="#c4d98a" data-flavor="pistache">
     <div class="txt left">
       <div data-en="Flavour 02 / 04" class="kicker a">Saveur 02 / 04</div>
       <h2 class="split">Can’ <em>Pistachio</em></h2>
@@ -324,7 +334,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
       <div class="price a"><span class="count" data-v="4000">4 000</span><small>FCFA</small></div>
     </div>
   </section>
-  <section class="sec" data-bg="#ece6df" data-flavor="oreo">
+  <section class="sec dark s-velv" data-bg="#9e1b2b" data-flavor="oreo">
     <div class="txt right">
       <div data-en="Flavour 03 / 04" class="kicker a">Saveur 03 / 04</div>
       <h2 data-en="Can’ &lt;em&gt;Red Velvet Oreo&lt;/em&gt;" class="split">Can’ <em>red velvet Oreo</em></h2>
@@ -332,7 +342,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
       <div class="price a"><span class="count" data-v="3000">3 000</span><small>FCFA</small></div>
     </div>
   </section>
-  <section class="sec" data-bg="#f0dcc5" data-flavor="bueno">
+  <section class="sec dark s-buen" data-bg="#5a321d" data-flavor="bueno">
     <div class="txt left">
       <div data-en="Flavour 04 / 04" class="kicker a">Saveur 04 / 04</div>
       <h2 class="split">Can’ <em>Bueno</em></h2>
