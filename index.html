@@ -35,8 +35,8 @@
 {"@type":"MenuItem","name":"Can’ Bueno","offers":{"@type":"Offer","price":"3000","priceCurrency":"XAF"}},
 {"@type":"MenuItem","name":"Pack découverte","offers":{"@type":"Offer","price":"13500","priceCurrency":"XAF"}}]}}}
 </script>
-<link rel="preload" as="image" href="assets/accueil-decor.jpg" media="(min-width:821px)">
-<link rel="preload" as="image" href="assets/accueil-decor-mobile.jpg" media="(max-width:820px)">
+<link rel="preload" as="image" href="assets/accueil-decor-v2.jpg" media="(min-width:821px)">
+<link rel="preload" as="image" href="assets/accueil-decor-mobile-v2.jpg" media="(max-width:820px)">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/+esm" crossorigin>
@@ -61,7 +61,7 @@ a{color:inherit}
 main{position:relative;z-index:3}
 
 /* décor de la première page : velours, cupcakes, socle en bois */
-#decor{position:absolute;inset:0;background:#5c0b17 url(assets/accueil-decor.jpg) center bottom/cover no-repeat;will-change:opacity}
+#decor{position:absolute;inset:0;background:#5c0b17 url(assets/accueil-decor-v2.jpg) center bottom/cover no-repeat;will-change:opacity}
 #decor::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(60,5,12,0) 38%,rgba(38,3,8,.55) 100%),linear-gradient(180deg,rgba(38,3,8,.45) 0%,rgba(38,3,8,0) 22%,rgba(38,3,8,0) 72%,rgba(38,3,8,.65) 100%)}
 .hero-bottom .tag,.hero-bottom p{display:flex;align-items:center;justify-content:center;gap:16px}
 .hero-bottom .tag::before,.hero-bottom .tag::after,.hero-bottom p::before,.hero-bottom p::after{content:"";flex:0 0 clamp(28px,6vw,90px);height:1px;background:linear-gradient(90deg,rgba(217,165,74,0),var(--gold))}
@@ -245,7 +245,7 @@ footer em{font-family:"Playfair Display",serif;font-style:italic;letter-spacing:
   .pack-top{top:11vh}
   .ghost{font-size:24vw}
   .ghost.hero{font-size:22vw;top:42%}
-  #decor{background:url(assets/accueil-decor.jpg) center bottom/auto 46% no-repeat,url(assets/accueil-decor-mobile.jpg) center top/cover no-repeat #5c0b17}
+  #decor{background:url(assets/accueil-decor-v2.jpg) center bottom/auto 46% no-repeat,url(assets/accueil-decor-mobile-v2.jpg) center top/cover no-repeat #5c0b17}
   .hero-bottom .tag::before,.hero-bottom .tag::after{display:none}
   .cta{padding:10px 14px;font-size:13px}
 }
