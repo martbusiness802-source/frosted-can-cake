@@ -334,7 +334,7 @@ window.addEventListener('unhandledrejection', function(){ setTimeout(window.hide
       <div class="price a"><span class="count" data-v="4000">4 000</span><small>FCFA</small></div>
     </div>
   </section>
-  <section class="sec dark s-velv" data-bg="#9e1b2b" data-flavor="oreo">
+  <section class="sec dark s-velv" data-bg="#231c1b" data-flavor="oreo">
     <div class="txt right">
       <div data-en="Flavour 03 / 04" class="kicker a">Saveur 03 / 04</div>
       <h2 class="split">Can’ <em>Oreo</em></h2>
@@ -443,7 +443,7 @@ const T = EN ? { empty:'No cans yet.', hello:'Hello Amenda Cakes, I would like t
 const MENU = [
   { id:'speculos', name: EN ? 'Can’ Speculoos' : 'Can’ Spéculos', desc: EN ? 'Vanilla sponge, Speculoos spread and biscuit' : 'Génoise vanille, pâte et biscuit Spéculos', price:4000, c:'#c47e3e' },
   { id:'pistache', name:'Can’ Pistachio', desc: EN ? 'Chocolate sponge, pistachio spread and ground pistachio' : 'Génoise chocolat, pâte et poudre de pistache', price:4000, c:'#a3c63f' },
-  { id:'oreo', name:'Can’ Oreo', desc: EN ? 'Sponge cake, Oreo cream and biscuit' : 'Génoise, crème et biscuit Oreo', price:3000, c:'#9e1b2b' },
+  { id:'oreo', name:'Can’ Oreo', desc: EN ? 'Sponge cake, Oreo cream and biscuit' : 'Génoise, crème et biscuit Oreo', price:3000, c:'#231c1b' },
   { id:'bueno', name:'Can’ Bueno', desc: EN ? 'Chocolate sponge, Bueno spread and Kinder Bueno' : 'Génoise chocolat, pâte Bueno et Kinder Bueno', price:3000, c:'#a9652d' },
   { id:'pack', name: EN ? 'Discovery pack' : 'Pack découverte', desc: EN ? 'All 4 flavours' : 'Les 4 saveurs', price:13500, c:'#d9a54a', tip: EN ? 'Save 500 FCFA' : '500 FCFA d’économie' },
 ];
@@ -555,7 +555,7 @@ const FLAVORS = {
     bands:[['crumb',.11],['cake',.17,'#5b3322'],['cream',.12,'#fbf5e9'],['paste',.1,'#a9c94a'],['crumb',.09],['cake',.15,'#5b3322'],['cream',.12,'#fbf5e9'],['paste',.05,'#a9c94a'],['crumb',.09]],
     labels:['Poudre de pistache','Crème chantilly vanille','Pâte pistache','Génoise chocolat'] },
   oreo:{ crumbs:['#16100d','#2a1e19','#3b2c25','#0e0907','#4a3a32'],
-    bands:[['crumb',.13],['cake',.17,'#a3202e'],['cream',.16,'#f5f1ea',true],['crumb',.1],['cake',.15,'#a3202e'],['cream',.14,'#f5f1ea',true],['crumb',.13]],
+    bands:[['crumb',.13],['cake',.17,'#211a18'],['cream',.16,'#f5f1ea',true],['crumb',.1],['cake',.15,'#211a18'],['cream',.14,'#f5f1ea',true],['crumb',.13]],
     labels:['Crème chantilly Oreo','Biscuit Oreo','Génoise'] },
   bueno:{ crumbs:['#7c3f17','#a9652d','#5a2a10','#c88a4a','#ead6ae'],
     bands:[['crumb',.11],['cake',.17,'#5b3322'],['cream',.13,'#d3a97f'],['paste',.08,'#c88c48'],['chunk',.11],['cake',.14,'#5b3322'],['cream',.12,'#d3a97f'],['crumb',.12]],
@@ -745,7 +745,7 @@ const crumbGeo = new THREE.IcosahedronGeometry(1, 0);
 
 /* photos des canettes, déroulées autour du cylindre par tools/photos_canettes.py (de face = la photo exacte) */
 const PHOTOS = {};
-const PHOTO_V = 3; // à augmenter quand une photo de canette change (force le rechargement chez les visiteurs)
+const PHOTO_V = 4; // à augmenter quand une photo de canette change (force le rechargement chez les visiteurs)
 async function loadPhotos(){
   const loader = new THREE.TextureLoader();
   await Promise.all(ORDER.map(k => Promise.race([
